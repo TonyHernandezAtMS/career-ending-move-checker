@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+local.settings.json
+
+>>>>>>> 0f9eba8... Restore .gitignore
 # Logs
 logs
 *.log
@@ -56,4 +61,3 @@ typings/
 
 # dotenv environment variables file
 .env
-
