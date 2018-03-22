@@ -84,10 +84,7 @@ function textSentiment(phrases) {
 function processText(text) {
     let response = {
         shouldBlock: false,
-        reason: '',
-        mostNegativeSentimentPhrase: '',
-        sortedListOfPhrasesAndRatings: [],
-        originalText: text
+        reason: ''
     };
 
     return detectLanguage(text)
@@ -99,12 +96,6 @@ function processText(text) {
         })
         .then(function (phraseSentiment) {
             phraseSentiment = _.orderBy(phraseSentiment, ['score'], ['asc']);
-            response.sortedListOfPhrasesAndRatings = phraseSentiment;
-
-            let mostNegativeSentimentPhrase = _.head(phraseSentiment);
-            if (mostNegativeSentimentPhrase != undefined && mostNegativeSentimentPhrase.text) {
-                response.mostNegativeSentimentPhrase = mostNegativeSentimentPhrase.text;
-            }
 
             response.shouldBlock = _.some(phraseSentiment, function (phrase) {
                 return phrase.score <= BlockSinglePhraseNegativeSentimentScore;
